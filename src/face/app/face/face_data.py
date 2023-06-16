@@ -6,8 +6,8 @@ from collections import deque
 import numpy as np
 import cv2
 from requests import patch
-import kbds.util.constant as constant
-import kbds.util.picConv as convertor
+import face.util.constant as constant
+import face.util.picConv as convertor
 
 
 MAX_FACE_IN_POOL = 40
