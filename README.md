@@ -11,18 +11,19 @@ docker run --gpus all -it -d --privileged -v /tmp/.X11-unix:/tmp/.X11-unix -e DI
 ## Pretrained Models
 
 ### For Arcface 
-1) Downloads the the Arcface model weights and images from the link given below
+1) Downloads the the Arcface model weights and images adn library file .from the link given below
 
    [https://drive.google.com/drive/folders/1oolpyEBaStNk3IKjYtlApO_QKMCs6NMy?usp=sharing](https://drive.google.com/drive/folders/1oolpyEBaStNk3IKjYtlApO_QKMCs6NMy?usp=sharing)
 
 2) git clone https://github.com/wang-xinyu/tensorrtx.git
 3) cd tensorrtx/arcface
 4) Copy the arcface weights to tensorrtx/arcface
-5) Copyjoey0.ppm and joey1.ppm to tensorrtx/arcface
+5) Copy joey0.ppm and joey1.ppm to tensorrtx/arcface
 6) mkdir build && cd build && cmake .. && make
 7) ./arcface-r100 -s (This will generate arcface-r100.engine file)
 8) mkdir /opt/tensorrt
 9) copy arcface-r100.engine to /opt/tensorrt/
+10) copy the libArcFaceDecoder.so to /opt/tensorrt (Download this file from the google drive)
 
 ### For Retinaface
 1) Downloads the the Arcface model weights and images from the link given below
@@ -44,10 +45,12 @@ docker run --gpus all -it -d --privileged -v /tmp/.X11-unix:/tmp/.X11-unix -e DI
 1) git clone https://github.com/SauravSinghPaliwal/Deepstream-Face-Recognition.git
 2) cd Deepstream-Face-Recognition
 3) move models directory to /opt/
+4) mkdir /opt/models/arcface
    #### Copy the engine files to their respective directory
 4) cp /opt/tensorrt/arcface-r100.engine  /opt/models/arcface/
-5) cp /opt/tensorrt/retina_r50.engine  /opt/models/retinaface/
-6) cp /opt/tensorrt/libdecodeplugin.so /opt/models/retinaface/
+5) cp /opt/tensorrt/libArcFaceDecoder.so /opt/models/arcface/
+6) cp /opt/tensorrt/retina_r50.engine  /opt/models/retinaface/
+7) cp /opt/tensorrt/libdecodeplugin.so /opt/models/retinaface/
    #### Modify all path input video path in test/face_test.py
    #### Start kafka service before everything.
 7) wget https://archive.apache.org/dist/kafka/3.4.0/kafka_2.13-3.4.0.tgz
