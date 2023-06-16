@@ -26,25 +26,21 @@ docker run --gpus all -it -d --privileged -v /tmp/.X11-unix:/tmp/.X11-unix -e DI
 10) copy the libArcFaceDecoder.so to /opt/tensorrt (Download this file from the google drive)
 
 ### For Retinaface
-1) Downloads the the Arcface model weights and images from the link given below
 
-   [https://drive.google.com/drive/folders/1otvST_oTLGMua7TUGsx1n6aZ5xNXHbhK?usp=sharing](https://drive.google.com/drive/folders/1otvST_oTLGMua7TUGsx1n6aZ5xNXHbhK?usp=sharing)
-   
-3) cd tensorrtx/retinaface
-4) Copy the Retinaface weights to tensorrtx/retinaface
-5) vim retina_r50.cpp
-6) Change the batch size and Precision according to yourself (* For me I set the batchsize as 32 according to my model and Precision as FP16) 
-7) mkdir build && cd build && cmake .. && make
-8) ./retina_r50 -s (This will generate retina_r50.engine file)
-9) mkdir /opt/tensorrt
-10) copy retina_r50.engine to /opt/tensorrt/
-11) Also copy the libdecodeplugin.so to /opt/tensorrt
+1) cd tensorrtx/retinaface
+2) Copy the Retinaface weights to tensorrtx/retinaface
+3) vim retina_r50.cpp
+4) Change the batch size and Precision according to yourself (* For me I set the batchsize as 32 according to my model and Precision as FP16) 
+5) mkdir build && cd build && cmake .. && make
+6) ./retina_r50 -s (This will generate retina_r50.engine file)
+7) copy retina_r50.engine to /opt/tensorrt/
+8) Also copy the libdecodeplugin.so to /opt/tensorrt
 
 ## Run the demo 
 
 1) git clone https://github.com/SauravSinghPaliwal/Deepstream-Face-Recognition.git
 2) cd Deepstream-Face-Recognition
-3) move models directory to /opt/
+3) cp -r models /opt/
 4) mkdir /opt/models/arcface
    #### Copy the engine files to their respective directory
 4) cp /opt/tensorrt/arcface-r100.engine  /opt/models/arcface/
