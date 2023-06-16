@@ -18,11 +18,11 @@ import gi
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GLib
 
-from kbds.util.singleton import Singleton
-from kbds.util.file import *
+from face.util.singleton import Singleton
+from face.util.file import *
 from .srcm import SRCM
-import kbds.util.constant as constant
-from kbds.util.bus_kafka import init_bus_kafka
+import face.util.constant as constant
+from face.util.bus_kafka import init_bus_kafka
 
 __all__ = ['DSPipeline']
 
