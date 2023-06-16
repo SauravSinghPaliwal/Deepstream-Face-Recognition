@@ -1,24 +1,24 @@
-import kbds
+import face
 
 import sys
 import os
 import configparser
 import gi
 
-from kbds.core import pipeline
+from face.core import pipeline
 gi.require_version('Gst', '1.0')
 from gi.repository import Gst, GLib
 import time
 import pyds
 
-from kbds import sysp
-from kbds import DSPipeline
-import kbds.core.srcm
-from kbds.util.FPS import PERF_DATA
-from kbds.util.format import long_to_uint64
-from kbds.util.picConv import crop_object
-from kbds.app.face.face_data import Facethread
-import kbds.util.constant as constant
+from face import sysp
+from face import DSPipeline
+import face.core.srcm
+from face.util.FPS import PERF_DATA
+from face.util.format import long_to_uint64
+from face.util.picConv import crop_object
+from face.app.face.face_data import Facethread
+import face.util.constant as constant
 from .face_data import *
 import ctypes
 ctypes.cdll.LoadLibrary('/opt/models/retinaface/libplugin_rface.so')
@@ -235,7 +235,7 @@ class DSFace(DSPipeline):
         msgconv.set_property('payload-type', schema_type)
         
         msgbroker.set_property('proto-lib', proto_lib)
-        print(self.conn_str)
+        pkbdrint(self.conn_str)
         msgbroker.set_property('conn-str', self.conn_str)
         if MSGBROKER_CONFIG_FILE is not None:
             msgbroker.set_property('config', MSGBROKER_CONFIG_FILE)
